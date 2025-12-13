@@ -72,7 +72,7 @@ function App() {
 
   return (
     <>
-      <main>
+      <main className='font-Onest'>
         <Suspense fallback={<Loading />}>
           <Hero />
         </Suspense> 
