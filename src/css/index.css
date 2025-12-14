@@ -44,6 +44,11 @@
 
 @import "tailwindcss";
 
+body {
+  background-color: #111; 
+  overscroll-behavior-y: none; /* Mencegah efek pantul berlebih */
+}
+
 @theme {
   --font-Onest: "Onest", "sans-serif";
 
