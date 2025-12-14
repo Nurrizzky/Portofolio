@@ -1,10 +1,11 @@
 import { ChevronDown, FileUser } from "lucide-react";
 import Boxtext from "../components/BoxText/BoxText";
 import Sparkling from '../assets/images/sparkling.webp'
+import SectionWrapper from '../layouts/SectionWrapper';
 
 export default function HeroSection() {
    return (
-      <section id="hero-section" className='h-screen px-10 flex justify-center items-center relative '>
+      <SectionWrapper id={"hero-section"} style={"relative flex justify-center items-center"}>
 
         <div className="w-full absolute top-10 flex justify-between px-10">
           <div className="flex items-center animate-slide-from-left w-fit">
@@ -46,6 +47,6 @@ export default function HeroSection() {
           </div>
 
         </div>
-      </section>
+      </SectionWrapper>
    )
 }
