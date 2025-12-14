@@ -5,7 +5,7 @@ import SectionWrapper from '../layouts/SectionWrapper';
 
 export default function HeroSection() {
    return (
-      <SectionWrapper id={"hero-section"} style={"relative flex justify-center items-center"}>
+      <SectionWrapper id={"hero-section"} style={"relative flex justify-center items-center"} useSvh={true}>
 
         <div className="w-full absolute top-10 flex justify-between px-10">
           <div className="flex items-center animate-slide-from-left w-fit">
