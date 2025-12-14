@@ -1,8 +1,8 @@
 import SectionWrapper from "../layouts/SectionWrapper";
 
-export default function Project() {
+export default function Contact() {
    return (
-      <SectionWrapper id={"project"}>
+      <SectionWrapper id={"contact"}>
          tess
       </SectionWrapper>
    )

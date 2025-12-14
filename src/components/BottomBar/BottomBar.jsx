@@ -1,14 +1,65 @@
-import { House, Sparkle } from "lucide-react";
+import { useState } from "react"
+import { UserRound, FolderGit2, BadgeCheck, Send, ArrowBigUpDash } from "lucide-react";
 
 export default function BottomBar({ isVisible }) {
+
+   const menu = [
+      { link: "about", name:"About" , icon: <UserRound /> },
+      { link: "project", name:"Project", icon: <FolderGit2 /> },
+      { link: "certificate", name:"Certificate", icon: <BadgeCheck /> },
+      { link: "contact", name:"Contact", icon: <Send /> },
+      { link: "hero-section", name:"Landing", icon: <ArrowBigUpDash /> }
+   ];
+   const [ backgroundStyle, setBackgroundStyle ] = useState({
+      left: 0,
+      width: 0,
+      height: 0,
+      opacity: 0
+   });
+
+   const handleMouseEnter = (e) => {
+      const { offsetLeft, offsetWidth, offsetHeight } = e.target;
+      setBackgroundStyle({
+         left: offsetLeft,
+         width: offsetWidth,
+         height: offsetHeight,
+         opacity: 1
+      })
+   }
+
+   const handleMouseLeave = () => {
+       setBackgroundStyle(prev => ({...prev, opacity: 0}));
+   }
+
+
    return (
-    
-   <div className={`w-full font-Onest fixed bottom-0 mx-auto place-items-center z-30 transition-all duration-500 ease-in-out ${ isVisible ? "bottom-10 opacity-100 translate-y-0" : "-bottom-20 opacity-0 translate-y-10 pointer-events-none" }`}>
-      <div className="w-1/3 border-t border-white/35 border-b border-b-white/10 rounded-2xl px-5 py-2.5 bg-linear-to-b from-gray-600/40 to-gray-600/25 backdrop-blur-md flex text-white">
-         <a href="#about" className="border-white/35 border-b border-r border-l  border-t border-b-white/10 rounded-lg py-2 px-3">
-            <p>About</p>
-         </a>
-      </div>
-    </div>
+      <nav className={`w-full font-Onest fixed mx-auto place-items-center z-30 ${ isVisible ? "bottom-5 opacity-100 animate-slide-from-bottom" : "animate-slide-from-top translate-y-36 opacity-0 pointer-events-none" }`}>
+         <div className="relative w-fit inset-shadow-sm-cus hover:inset-shadow-md-cus rounded-full ease-in-out transition-all p-1.5 bg-linear-to-b from-dark-light/60 to-dark-light/30 backdrop-blur-sm flex items-center justify-center space-x-2 text-white"
+            onMouseLeave={handleMouseLeave}
+         >
+            <div className="inset-shadow-sm-cus bg-[#b9b9b92c] backdrop-blur-sm rounded-full transition-all absolute"
+               style={{
+                  left: `${backgroundStyle.left}px`,
+                  width: `${backgroundStyle.width}px`,
+                  height: `${backgroundStyle.height}px`,
+                  opacity: backgroundStyle.opacity
+               }}
+            />
+            {menu.map((menu, index) => {
+               return <a 
+               key={index}
+               href={`#${menu.link}`} 
+               className="py-3 px-3 z-10 group flex items-center"
+               onMouseEnter={handleMouseEnter}
+               >
+                  <p>{menu.icon}</p>
+                  <div className="group-hover:visible invisible absolute w-fit px-3 transition-all ease-in-out py-1.5 -top-12 rounded-3xl bg-dark-light inset-shadow-sm-cus" style={{
+                     left: `${backgroundStyle.left - 15}px`,
+                     opacity: backgroundStyle.opacity
+                  }}>{menu.name}</div>
+               </a>
+            })}
+         </div>
+      </nav>
    )
 }
