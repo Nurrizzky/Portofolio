@@ -1,6 +1,6 @@
-export default function Boxtext({children}) {
+export default function Boxtext({children, style}) {
    return (
-      <div className="w-fit px-3 h-12 bg-linear-to-br from-[#ff0202] via-[#9b0000] to-[#540000] rounded-[10px] inset-shadow-sm flex justify-center items-center">
+      <div className={`${style} px-3 animate-slide-from-right h-fit bg-linear-to-br from-30% from-[#ff0202] to-[#540000] rounded-[10px] inset-shadow-lg-cus flex justify-center items-center`}>
          {children}
       </div>
    )

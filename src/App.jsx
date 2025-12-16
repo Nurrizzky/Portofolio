@@ -3,7 +3,9 @@ import { ReactTyped } from 'react-typed';
 import BottomBar from './components/BottomBar/BottomBar';
 import Loading from './components/Loading/Loading';
 import BackgroundGradient from './components/BackgroundGradient/BackgroundGradient.jsx';
+import ReactLenis, { useLenis } from 'lenis/react';
 
+const DevelopmentPage = lazy(() => import('./sections/DevelopmentSession.jsx'));
 const Hero = lazy(() => import('./sections/HeroSection.jsx'));
 const AboutPage = lazy(() => import('./sections/About.jsx'));
 const Project = lazy(() => import('./sections/Project.jsx'));
@@ -13,8 +15,13 @@ const Contact = lazy(() => import('./sections/Contact.jsx'));
 function App() {
   const[showWelcome, setShowWelcome] = useState(true);
   const[isFadingOut, setIsFadingOut] = useState(false);
-
   const[showBottomBar, setBottomBar] = useState(false);
+
+  useLenis(() => {
+    if (scroll > 300) {
+      console.log("lwat 300")
+    }
+  })
 
   useEffect(() => {
     const hasSeenWelcome = sessionStorage.getItem("seenWelcome");
@@ -45,7 +52,7 @@ function App() {
     }
 
     const handleScroll = () => {
-      if (window.scrollY >= innerHeight * 0.9) {
+      if (window.scrollY >= innerHeight * 0.8) {
         setBottomBar(true);
       } else {
         setBottomBar(false);
@@ -74,19 +81,20 @@ function App() {
   }
 
   return (
-    <>
+    <ReactLenis root>
       <main className='font-Onest text-white'>
         <BackgroundGradient />
         <Suspense fallback={<Loading />}>
-          <Hero />
+          {/* <Hero />
           <AboutPage />
           <Project />
           <Certificate />
-          <Contact />
+          <Contact /> */}
+          <DevelopmentPage />
         </Suspense> 
-        <BottomBar isVisible={showBottomBar} loading="lazy" />
+        <BottomBar isVisible={showBottomBar} />
       </main>
-    </>
+    </ReactLenis>
   )
 }
 
