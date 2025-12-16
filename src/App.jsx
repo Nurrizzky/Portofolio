@@ -86,7 +86,7 @@ function App() {
         <BackgroundGradient />
         <Suspense fallback={<Loading />}>
           {/* <Hero />
-          <AboutPage />
+          <AboutPage /> 
           <Project />
           <Certificate />
           <Contact /> */}
