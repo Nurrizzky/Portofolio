@@ -72,13 +72,13 @@ function App() {
     <ReactLenis root>
       <main className='font-Onest dark:text-white light:text-dark-light overflow-hidden'>
         <Suspense fallback={<Loading />}>
-          <Hero />
+          {/* <Hero />
           <AboutPage /> 
           <ExperiencePage />
           <Project />
           <Certificate />
-          <Contact />
-          {/* <DevelopmentPage /> */}
+          <Contact /> */}
+          <DevelopmentPage />
         </Suspense> 
         <BottomBar isVisible={showBottomBar}  />
       </main>
