@@ -1,16 +1,30 @@
-import { useState } from "react"
-import { UserRound, FolderGit2, BadgeCheck, Send, ArrowBigUpDash, SunMedium } from "lucide-react";
+import { useState, useEffect } from "react"
+import { UserRound, FolderGit2, BadgeCheck, Send, ArrowBigUpDash, SunMedium, Moon, BriefcaseBusiness } from "lucide-react";
 
 export default function BottomBar({ isVisible }) {
-   const [activeMenu, setActiveMenu] = useState(""); //menyimpan nama menu yang aktif
+   const [activeMenu, setActiveMenu] = useState("");
+   const [theme, setTheme] = useState('dark');
+
+   useEffect(() => {
+      if (theme === 'light') {
+         document.documentElement.classList.add('light');
+      } else {
+         document.documentElement.classList.remove('light');
+      }
+   }, [theme]);
+
+   const toggleTheme = () => {
+      setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+   };
 
    const menu = [
       { link: "about", name:"About" , icon: <UserRound /> },
+      { link: "experience", name:"Experience", icon: <BriefcaseBusiness /> },
       { link: "project", name:"Project", icon: <FolderGit2 /> },
       { link: "certificate", name:"Certificate", icon: <BadgeCheck /> },
       { link: "contact", name:"Contact", icon: <Send /> },
       { link: "hero-section", name:"Landing", icon: <ArrowBigUpDash /> },
-      { link: "#", name:"Theme", icon:  activeMenu ? <SunMedium /> : <ArrowBigUpDash /> }
+      { link: "theme", name:"Theme", icon:  theme === 'dark' ? <SunMedium /> : <Moon /> }
    ];
    const [ backgroundStyle, setBackgroundStyle ] = useState({
       left: 0,
@@ -36,11 +50,13 @@ export default function BottomBar({ isVisible }) {
 
 
    return (
-      <nav className={`w-full font-Onest fixed mx-auto place-items-center z-30 ${ isVisible ? "bottom-5 opacity-100 animate-slide-from-bottom" : "animate-slide-from-top translate-y-20 opacity-0 pointer-events-none" }`}>
-         <div className="relative w-fit inset-shadow-sm-cus hover:inset-shadow-md-cus rounded-full ease-in-out transition-all p-1.5 bg-linear-to-b from-dark-light/60 to-dark-light/20 backdrop-blur-lg backdrop-brightness-100 flex items-center justify-center space-x-2 text-white"
+      <nav className={`w-full fixed mx-auto place-items-center z-30 bottom-5 transition-all duration-700 ${ isVisible ? "visible translate-y-0" : "translate-y-24 invisible pointer-events-none" }`}>
+         <div className="relative w-fit inset-shadow-sm-cus hover:inset-shadow-md-cus rounded-full ease-in-out duration-10 transition-all p-1.5 bg-linear-to-b from-dark-light/80 to-dark-light/20 light:from-white/60 light:to-white/20 backdrop-blur-md  flex items-center justify-center text-white"
             onMouseLeave={handleMouseLeave}
          >
-            <div className="inset-shadow-sm-cus bg-[#b9b9b92c] backdrop-blur-sm rounded-full transition-all absolute"
+
+            {/* Backgrond Icon */}
+            <div className="inset-shadow-sm-cus bg-[#b9b9b92c] light:bg-dark-light rounded-full transition-all duration-75 absolute"
                style={{
                   left: `${backgroundStyle.left}px`,
                   width: `${backgroundStyle.width}px`,
@@ -49,8 +65,9 @@ export default function BottomBar({ isVisible }) {
                }}
             />
 
+            {/* Tooltip Icon */}
             <div 
-               className="absolute -top-12 px-3 py-1.5 rounded-3xl bg-dark-light inset-shadow-sm-cus text-sm transition-all duration-300 pointer-events-none whitespace-nowrap"
+               className="absolute -top-12 px-3 py-1.5 rounded-3xl max-sm:hidden bg-dark-light inset-shadow-sm-cus duration-75 transition-all text-sm pointer-events-none whitespace-nowrap"
                style={{
                   left: `${backgroundStyle.left + (backgroundStyle.width / 2)}px`,
                   transform: "translateX(-50%)", 
@@ -62,14 +79,17 @@ export default function BottomBar({ isVisible }) {
             </div>
 
             {menu.map((menu, index) => {
-               return <a 
+               return ((menu.name !== 'Theme') ?   
+               <a 
                   key={index}
                   href={`#${menu.link}`} 
-                  className="py-3 px-3 z-10 group flex items-center"
+                  className="py-3 px-3 z-10 group flex items-center light:text-dark-light light:hover:text-white transition-all"
                   onMouseEnter={(e) => handleMouseEnter(e, menu.name)}
                   >
                   <p>{menu.icon}</p>
-               </a>
+               </a> : <button key={index} className={`p-3 z-10 group light:text-dark-light light:hover:text-white inline-block transition-transform duration-500 ${theme === 'dark' ? 'rotate-180' : 'rotate-0'}`} onClick={toggleTheme} onMouseEnter={(e) => handleMouseEnter(e, menu.name)}>
+                  {menu.icon}
+               </button>)
             })}
          </div>
       </nav>

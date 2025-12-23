@@ -2,12 +2,12 @@ import { useState, useEffect, lazy, Suspense } from 'react'
 import { ReactTyped } from 'react-typed';
 import BottomBar from './components/BottomBar/BottomBar';
 import Loading from './components/Loading/Loading';
-import BackgroundGradient from './components/BackgroundGradient/BackgroundGradient.jsx';
 import ReactLenis, { useLenis } from 'lenis/react';
 
 const DevelopmentPage = lazy(() => import('./sections/DevelopmentSession.jsx'));
 const Hero = lazy(() => import('./sections/HeroSection.jsx'));
 const AboutPage = lazy(() => import('./sections/About.jsx'));
+const ExperiencePage = lazy(() => import('./sections/Experience.jsx'))
 const Project = lazy(() => import('./sections/Project.jsx'));
 const Certificate = lazy(() => import('./sections/Certificate.jsx'));
 const Contact = lazy(() => import('./sections/Contact.jsx'));
@@ -17,11 +17,17 @@ function App() {
   const[isFadingOut, setIsFadingOut] = useState(false);
   const[showBottomBar, setBottomBar] = useState(false);
 
-  useLenis(() => {
-    if (scroll > 300) {
-      console.log("lwat 300")
+  useLenis(({ scroll }) => {
+    const show = scroll >= innerHeight * 0.8;
+
+    if (showWelcome) {
+      return;
     }
-  })
+
+    if (show !== showBottomBar) {
+      setBottomBar(true);
+    }
+  }, [showBottomBar]);
 
   useEffect(() => {
     const hasSeenWelcome = sessionStorage.getItem("seenWelcome");
@@ -46,24 +52,6 @@ function App() {
 
   }, []);
 
-  useEffect(() => {
-    if (showWelcome) {
-      return;
-    }
-
-    const handleScroll = () => {
-      if (window.scrollY >= innerHeight * 0.8) {
-        setBottomBar(true);
-      } else {
-        setBottomBar(false);
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-
-  }, [showWelcome])
-
   if (showWelcome) {
     return (
       <div className={`flex items-center justify-center h-screen w-full bg-cover font-Onest bg-[#111] ${isFadingOut ? "animate-fade-out" : "animate-fade-in"}`}>
@@ -82,17 +70,17 @@ function App() {
 
   return (
     <ReactLenis root>
-      <main className='font-Onest text-white'>
-        <BackgroundGradient />
+      <main className='font-Onest dark:text-white light:text-dark-light overflow-hidden'>
         <Suspense fallback={<Loading />}>
-          {/* <Hero />
+          <Hero />
           <AboutPage /> 
+          <ExperiencePage />
           <Project />
           <Certificate />
-          <Contact /> */}
-          <DevelopmentPage />
+          <Contact />
+          {/* <DevelopmentPage /> */}
         </Suspense> 
-        <BottomBar isVisible={showBottomBar} />
+        <BottomBar isVisible={showBottomBar}  />
       </main>
     </ReactLenis>
   )
