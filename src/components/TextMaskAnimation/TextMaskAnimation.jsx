@@ -41,12 +41,12 @@ export default function TextMaskAnimation({
       }
 
    return (
-      <div ref={body} className={`${isBySingleCharacter} ${trackingText} text-gray-200 tracking-tighter overflow-hidden`}>
+      <div ref={body} className={`${isBySingleCharacter} ${trackingText} text-gray-200`}>
          {
             Array.isArray(text) ? 
                text.map((data, index) => {
-                  return <div key={index} className=" m-0">
-                     <motion.p custom={index} variants={animation} initial="initial" animate={isInView ? "enter" : ""} className={`${style}`}>
+                  return <div key={index} className="overflow-hidden m-0">
+                     <motion.p custom={index} variants={animation} initial="initial" animate={isInView ? "enter" : ""} className={style}>
                         {data}
                      </motion.p>
                   </div>

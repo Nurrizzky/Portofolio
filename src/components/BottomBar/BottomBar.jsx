@@ -23,7 +23,8 @@ export default function BottomBar({ isVisible }) {
       { link: "project", name:"Project", icon: <FolderGit2 /> },
       { link: "certificate", name:"Certificate", icon: <BadgeCheck /> },
       { link: "contact", name:"Contact", icon: <Send /> },
-      { link: "hero-section", name:"Landing", icon: <ArrowBigUpDash /> },
+      // { link: "contact", name:"Contact", icon: <ContactLink /> },
+      // { link: "hero-section", name:"Landing", icon: <ArrowBigUpDash /> },
       { link: "theme", name:"Theme", icon:  theme === 'dark' ? <SunMedium /> : <Moon /> }
    ];
    const [ backgroundStyle, setBackgroundStyle ] = useState({
@@ -50,13 +51,13 @@ export default function BottomBar({ isVisible }) {
 
 
    return (
-      <nav className={`w-full fixed mx-auto place-items-center z-30 bottom-5 transition-all duration-700 ${ isVisible ? "visible translate-y-0" : "translate-y-24 invisible pointer-events-none" }`}>
-         <div className="relative w-fit inset-shadow-sm-cus hover:inset-shadow-md-cus rounded-full ease-in-out duration-10 transition-all p-1.5 bg-linear-to-b from-dark-light/80 to-dark-light/20 light:from-white/60 light:to-white/20 backdrop-blur-md  flex items-center justify-center text-white"
+      <nav className={`w-full fixed mx-auto place-items-center z-50 bottom-5 transition-all  ${ isVisible ? "visible animate-slide-from-bottom" : "animate-slide-from-top invisible opacity-0 pointer-events-none" }`}>
+         <div className="relative w-fit inset-shadow-sm-cus hover:inset-shadow-md-cus rounded-full ease-in-out duration-200 transition-all p-1.5 bg-linear-to-b from-dark-light/80 to-dark-light/20 light:from-white/60 light:to-white/20 backdrop-blur-md  flex items-center justify-center text-white"
             onMouseLeave={handleMouseLeave}
          >
 
             {/* Backgrond Icon */}
-            <div className="inset-shadow-sm-cus bg-[#b9b9b92c] light:bg-dark-light rounded-full transition-all duration-75 absolute"
+            <div className="inset-shadow-sm-cus bg-[#b9b9b92c] light:bg-dark-light rounded-full transition-all duration-200 absolute"
                style={{
                   left: `${backgroundStyle.left}px`,
                   width: `${backgroundStyle.width}px`,
@@ -67,7 +68,7 @@ export default function BottomBar({ isVisible }) {
 
             {/* Tooltip Icon */}
             <div 
-               className="absolute -top-12 px-3 py-1.5 rounded-3xl max-sm:hidden bg-dark-light inset-shadow-sm-cus duration-75 transition-all text-sm pointer-events-none whitespace-nowrap"
+               className="absolute -top-12 px-3 py-1.5 rounded-3xl max-sm:hidden bg-dark-light inset-shadow-sm-cus duration-200 transition-all text-sm pointer-events-none whitespace-nowrap"
                style={{
                   left: `${backgroundStyle.left + (backgroundStyle.width / 2)}px`,
                   transform: "translateX(-50%)", 

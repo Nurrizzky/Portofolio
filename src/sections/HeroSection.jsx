@@ -1,8 +1,6 @@
 import { ChevronDown, FileUser } from "lucide-react";
-import Boxtext from "../components/BoxText/BoxText";
 import Sparkling from '../assets/images/sparkling.webp'
 import SectionWrapper from '../layouts/SectionWrapper';
-import { ReactTyped } from "react-typed";
 import gradient from "../assets/images/gradient.webp"
 import TextMaskAnimation from "../components/TextMaskAnimation/TextMaskAnimation";
 import textSpacer from "../utils/textSpacer";
@@ -13,27 +11,26 @@ export default function HeroSection() {
   const passion = textSpacer("Frontend");
 
    return (
-      <SectionWrapper id={"hero-section"} style={"sticky top-0 flex justify-center -z-10 items-center"} useSvh={true}>
+      <SectionWrapper id={"hero-section"} style={"sticky top-0 flex justify-center -z-10 items-center"} heroSection={true} useSvh={true}>
 
-        {/* gradient Images */}
         <div className="absolute inset-0 w-full h-full -z-10">
             <img src={gradient} alt="Gradient bg" className="w-full h-full light:bg-white bg-bg-dark"/>
         </div>
 
-        <div className="font-medium flex flex-col space-y-3 items-center relative overflow-hidden">
+        <div className="font-medium flex flex-col space-y-3 items-center relative">
             <div className="flex flex-col justify-center items-center relative max-sm:text-3xl max-sm:flex-col max-sm:space-y-3">
-              <p className="text-white animate-slide-from-bottom text-sm tracking-wider bg-linear-to-b from-black to-100% to-blue-400/40 backdrop-blur-lg px-4 py-1 mb-5 rounded-2xl">
+              <p className="text-white animate-slide-from-bottom text-sm tracking-wider bg-linear-to-b from-black to-100% to-blue-400/40 light:from-white backdrop-blur-lg px-4 py-1 mb-5 rounded-2xl">
                 Nur Rizky © 2025
               </p>
               <div className="animate-slide-from-right relative">
-                <TextMaskAnimation text={welcomeText} bySingleCharacter={true} style={"text-8xl"} trackingText="tracking-tighter" useBlur={true} />
-                <img src={Sparkling} alt="Sparkling" loading="eager" className="w-12 absolute -top-6 -right-6.5" />
-                <img src={Sparkling} alt="Sparkling" loading="eager" className="w-6 absolute -top-7 -right-6.5" />
-                <img src={Sparkling} alt="Sparkling" loading="eager" className="w-8 absolute top-1.5 -right-10" />
+                <TextMaskAnimation text={welcomeText} bySingleCharacter={true} style={"text-8xl light:text-bg-dark"} trackingText="tracking-tighter" useBlur={true} />
+                <img src={Sparkling} alt="Sparkling" loading="eager" className=" w-12 absolute -top-6 -right-6.5 animate-pulse-sparkling-three" />
+                <img src={Sparkling} alt="Sparkling" loading="eager" className=" w-6 absolute -top-7 -right-6.5 animate-pulse-sparkling-two" />
+                <img src={Sparkling} alt="Sparkling" loading="eager" className=" w-8 absolute top-1.5 -right-10 animate-pulse-sparkling" />
               </div> 
               <h3 className="animate-slide-from-right tracking-wide text-base flex flex-col items-center text-gray-400">
                 Let me introduce my self as a 
-                <TextMaskAnimation bySingleCharacter={true} style={"font-OldStandarTT font-normal italic text-xl text-white"} text={passion} trackingText="tracking-wider" />
+                <TextMaskAnimation bySingleCharacter={true} style={"font-OldStandarTT font-normal italic text-xl text-white light:text-bg-dark"} text={passion} trackingText="tracking-wider" />
               </h3> 
             </div>
         </div>

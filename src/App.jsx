@@ -26,8 +26,10 @@ function App() {
 
     if (show !== showBottomBar) {
       setBottomBar(true);
+    } else {
+      setBottomBar(false);
     }
-  }, [showBottomBar]);
+  }, [showWelcome]);
 
   useEffect(() => {
     const hasSeenWelcome = sessionStorage.getItem("seenWelcome");
@@ -54,7 +56,7 @@ function App() {
 
   if (showWelcome) {
     return (
-      <div className={`flex items-center justify-center h-screen w-full bg-cover font-Onest bg-[#111] ${isFadingOut ? "animate-fade-out" : "animate-fade-in"}`}>
+      <div className={`flex items-center justify-center h-screen w-full bg-cover font-Onest bg-[#111]`}>
         <ReactTyped
           strings={[
             `Hello 🖐️`,
@@ -62,7 +64,7 @@ function App() {
           ]}
           typeSpeed={50}
           backSpeed={40}
-          className={`text-white text-3xl tracking-tighter px-5 font-bold ${isFadingOut ? "animate-fade-out" : ""}`}
+          className={`text-white text-3xl tracking-tighter px-5 font-bold ${isFadingOut ? "animate-fade-out" : "animate-fade-in"}`}
         />
       </div>
     );
@@ -70,10 +72,10 @@ function App() {
 
   return (
     <ReactLenis root>
-      <main className='font-Onest dark:text-white light:text-dark-light overflow-hidden'>
+      {/* <Hero /> */}
+      <main className='font-Onest transition-colors duration-300 dark:text-white light:text-dark-light w-full h-full flex flex-col items-center z-50 justify-center'>
         <Suspense fallback={<Loading />}>
-          {/* <Hero />
-          <AboutPage /> 
+          {/* <AboutPage /> 
           <ExperiencePage />
           <Project />
           <Certificate />
