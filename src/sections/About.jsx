@@ -6,6 +6,7 @@ import textSpacer from '../utils/textSpacer';
 import React, { useEffect, useState, useCallback, memo } from "react";
 import { GitHubCalendar } from "react-github-calendar";
 import { Tooltip } from "react-tooltip";
+import { ArrowDown } from "lucide-react";
 
 const name = textSpacer("Muhammad Nur Rizky");
 const titleSection = textSpacer("About me.");
@@ -43,13 +44,13 @@ const About = () => {
    return (
       <SectionWrapper id={"about"} style={'z-50'} useSvh={true}>
          {/* <h1 className="text-3xl mb-10 font-semibold">About me.</h1> */}
-         <TextMaskAnimation text={titleSection} bySingleCharacter={true} style={'text-3xl mb-10 font-semibold'} />
-         <div className="mt-5 h-full flex flex-col space-x-10 max-sm:flex-col max-sm:items-center ">
+         <TextMaskAnimation text={titleSection} bySingleCharacter={true} style={'text-3xl mb-8 font-semibold'} />
+         <div className="h-fit flex flex-col px-4">
 
                <div className="h-fit w-full flex justify-between">
                   <div className="flex space-x-2 items-center">
                      <div className="inset-shadow-md-cus p-1 rounded-2xl">
-                        <img src={profile} alt="profile-picture" className="w-[50px] hover:w-20 rounded-xl transition-all ease-in-out duration-300" />
+                        <img src={profile} alt="profile-picture" className="w-13 hover:w-20 rounded-xl transition-all ease-in-out duration-300" />
                      </div>
                      <div className="flex flex-col -space-y-1">
                         <TextMaskAnimation text={name} bySingleCharacter={true} style={'text-white light:text-bg-dark text-lg font-medium'} />
@@ -64,19 +65,23 @@ const About = () => {
                   </div>
                </div>
 
-               <div className="text-left flex flex-col max-sm:text-left w-full h-fit overflow-hidden mt-10">
+               <div className="text-left flex flex-col max-sm:text-left w-full h-fit overflow-hidden mt-8">
                   <TextMaskAnimation text={text} singleCharacter={false} trackingText='tracking-wide' style={"light:text-bg-dark"} />
-                  <div className="flex flex-col mt-10">
+                  {/* <a href="#contact" className="group overflow-hidden w-fit py-1 pl-3.5 pr-1 inset-shadow-md-cus rounded-full bg-white text-bg-dark my-5 flex space-x-3 items-center justify-center transition-all duration-200 ease-in-out">
+                     <p>Let's talk</p>
+                     <ArrowDown className="group-hover:opacity-100 group-hover:w-auto opacity-0 w-0 bg-bg-dark rounded-full text-white p-[1.5px] transition-all duration-500 ease-in-out" />
+                  </a> */}
+                  <div className="flex flex-col mt-8">
                      <h2 className="text-xl font-medium text-left mb-5">Technologies I have used</h2>
                      <div className="flex flex-col">
                         <BadgeTechWrapper scrollDirection={"animate-scrollXtoLeft"} paddingT={true} paddingB={true} />
                         <BadgeTechWrapper scrollDirection={"animate-scrollXtoRight"} paddingB={true} /> 
                      </div>
                   </div>
-                  <div className="w-full h-full flex flex-col items-start justify-start mt-10">
+                  <div className="w-full h-full flex flex-col items-start justify-start mt-8">
                      <h2 className="text-xl font-medium text-left mb-5">Github Contribution</h2>
-                     <div className="w-full flex items-center space-x-3 max-xl:flex-col">
-                        <div className="w-full bg-dark-light flex justify-center rounded-md items-center p-5 inset-shadow-sm-cus">
+                     <div className="w-full flex items-end space-x-3 max-xl:flex-col  max-md:items-center max-md:justify-center">
+                        <div className="w-full bg-dark-light flex justify-center rounded-md items-center mx-2 p-5 inset-shadow-sm-cus">
                            {!isMounted ? (
                               <div className="animate-pulse flex gap-2">
                                  <div className="h-32 w-full bg-slate-700/50 rounded-md"></div>
@@ -97,7 +102,7 @@ const About = () => {
                         <div className="flex h-full space-x-3 w-full max-xl:flex-col max-xl:space-y-3">
                            <div className="flex flex-col gap-2 w-full h-full">
                               <h1>Currently Learning</h1>
-                              <div className="w-full h-full bg-dark-light p-3 flex items-center justify-center rounded-md inset-shadow-sm-cus">
+                              <div className="w-full h-full bg-dark-light p-5 flex items-center justify-center rounded-md inset-shadow-sm-cus">
                                  <ul className='list-disc list-inside'>
                                     <li>Flutter</li>
                                     <li>React</li>
@@ -121,9 +126,9 @@ const About = () => {
                            </div>
                         </div>
                      </div>
-                     <div className="w-full h-full flex flex-col items-start justify-start mt-10">
-                        {/* <h2 className="text-xl font-medium text-left mb-5">Interests</h2> */}
-                        <TextMaskAnimation text={textSpacer("Interest")} bySingleCharacter={true} style={'text-xl font-medium text-left mb-5'} /> 
+                     <div className="w-full h-full flex flex-col items-start justify-start mt-8">
+                        <h2 className="text-xl font-medium text-left mb-5">Interests</h2>
+                        {/* <TextMaskAnimation text={textSpacer("Interest")} bySingleCharacter={true} style={'text-xl font-medium text-left mb-5'} />  */}
                         <p>Professional: Learning Something New, Coding</p>
                         <p>Hobbies: Swimming, BasketBall, Listening To Music, Playing Strategic Games, and watch Movie</p>
                      </div>

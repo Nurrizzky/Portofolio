@@ -52,7 +52,7 @@ export default function BottomBar({ isVisible }) {
 
    return (
       <nav className={`w-full fixed mx-auto place-items-center z-50 bottom-5 transition-all  ${ isVisible ? "visible animate-slide-from-bottom" : "animate-slide-from-top invisible opacity-0 pointer-events-none" }`}>
-         <div className="relative w-fit inset-shadow-sm-cus hover:inset-shadow-md-cus rounded-full ease-in-out duration-200 transition-all p-1.5 bg-linear-to-b from-dark-light/80 to-dark-light/20 light:from-white/60 light:to-white/20 backdrop-blur-md  flex items-center justify-center text-white"
+         <div className="relative w-fit max-sm:scale-90 inset-shadow-sm-cus rounded-full ease-in-out duration-200 transition-all p-1.5 bg-linear-to-b from-dark-light/80 to-dark-light/20 light:from-white/60 light:to-white/20 backdrop-blur-xs  flex items-center justify-center text-white"
             onMouseLeave={handleMouseLeave}
          >
 
@@ -88,7 +88,7 @@ export default function BottomBar({ isVisible }) {
                   onMouseEnter={(e) => handleMouseEnter(e, menu.name)}
                   >
                   <p>{menu.icon}</p>
-               </a> : <button key={index} className={`p-3 z-10 group light:text-dark-light light:hover:text-white inline-block transition-transform duration-500 ${theme === 'dark' ? 'rotate-180' : 'rotate-0'}`} onClick={toggleTheme} onMouseEnter={(e) => handleMouseEnter(e, menu.name)}>
+               </a> : <button key={index} className={`p-3 z-10 group light:text-dark-light light:hover:text-white cursor-pointer inline-block transition-transform duration-500 ${theme === 'dark' ? 'rotate-180' : 'rotate-0'}`} onClick={toggleTheme} onMouseEnter={(e) => handleMouseEnter(e, menu.name)}>
                   {menu.icon}
                </button>)
             })}

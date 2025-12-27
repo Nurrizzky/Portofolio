@@ -42,14 +42,12 @@ export default function BadgeTechWrapper({ scrollDirection, paddingT = false, pa
          <div className={`w-max flex ${scrollDirection}`}>
             <div className={`flex space-x-2 pr-3`}>
                {techData.map((data, index) => {
-                  return <BadgeTech key={index} iconName={data.IconName} iconSize={data.IconSize} techIcon={data.Icon} iconDescription={data.IconDescription}>
-                  </BadgeTech>
+                  return <BadgeTech key={index} iconName={data.IconName} iconSize={data.IconSize} techIcon={data.Icon} iconDescription={data.IconDescription} />
                })}
             </div>
             <div className={`flex space-x-2 pr-3`}>
                {techData.map((data, index) => {
-                  return <BadgeTech key={index} iconName={data.IconName} iconSize={data.IconSize} techIcon={data.Icon} iconDescription={data.IconDescription}>
-                  </BadgeTech>
+                  return <BadgeTech key={index} iconName={data.IconName} iconSize={data.IconSize} techIcon={data.Icon} iconDescription={data.IconDescription} />
                })}
             </div>
          </div>

@@ -18,7 +18,7 @@ function App() {
   const[showBottomBar, setBottomBar] = useState(false);
 
   useLenis(({ scroll }) => {
-    const show = scroll >= innerHeight * 0.8;
+    const show = scroll >= innerHeight * 0.85;
 
     if (showWelcome) {
       return;
@@ -72,15 +72,15 @@ function App() {
 
   return (
     <ReactLenis root>
-      {/* <Hero /> */}
+      <Hero />
       <main className='font-Onest transition-colors duration-300 dark:text-white light:text-dark-light w-full h-full flex flex-col items-center z-50 justify-center'>
         <Suspense fallback={<Loading />}>
-          {/* <AboutPage /> 
+          <AboutPage /> 
           <ExperiencePage />
           <Project />
           <Certificate />
-          <Contact /> */}
-          <DevelopmentPage />
+          <Contact />
+          {/* <DevelopmentPage /> */}
         </Suspense> 
         <BottomBar isVisible={showBottomBar}  />
       </main>
